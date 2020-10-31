@@ -1,0 +1,44 @@
+{% extends "./basictemplate.html" %}
+{% block title %}Reservaciones{% endblock %}
+{% block content %}
+
+<div class="container" style="align-items: center;">
+    <div class="login-form">
+        <div class="main-div" style="text-align: center; background: #ffffff ;border-radius: 2px;margin: 10px auto 30px;max-width: 75%;padding: 50px 70px 70px 71px;">
+            <div class="panel" style="height: 8%;justify-items: center;background-image: url(https://thumbs.dreamstime.com/t/smoke-fog-misty-overltays-effect-isolated-black-background-mist-texture-134306141.jpg);">
+                <h1 style="font-family: 'Quicksand', sans-serif; color: white;">Reservas</h1>
+            </div><br>
+
+            <table class="table" style="border-radius: 2px;">
+            {% if reservations %}
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Propiedad</th>
+                  <th scope="col">Monto</th>
+                  <th scope="col">Detalle</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                  {% for reservation in reservations %}
+                    <tr>
+                    <th scope="row">{{ reservation.id }}</th>
+                    <td>{{ reservation.renter_name }}</td>
+                    <td>{{ reservation.owner_ship.name }}</td>
+                    <td>${{ reservation.total }}</td>
+                    <td><a class="btn btn-dark" style="color: white;font-family: 'Quicksand', sans-serif;" href="/reservation_detail/{{ reservation.id }}">Ver Ficha</a></td>
+                    </tr>
+                  {% endfor %}
+              {% else %}
+                    <p>No hay reservas disponibles!</p>
+              {% endif %}
+              </tbody>
+              </table>
+
+              <br>
+        </div>
+    </div>
+ </div>
+{% endblock %}

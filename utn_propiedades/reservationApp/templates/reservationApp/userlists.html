@@ -1,0 +1,38 @@
+{% extends "./basictemplate.html" %}
+{% block title %}Users List{% endblock %}
+{% block content %}
+<body id="login-form" style="background-image: url(https://abysmgaming.com/wp-content/uploads/2018/05/background-product.jpg); background-repeat:no-repeat; background-position:center; background-size:cover; padding: 50px 70px 70px 71px;">
+<div class="container">
+    <div class="login-form" style="">
+        <div class="main-div" style=" background: #ffffff ;border-radius: 2px;margin: 10px auto 30px;max-width: auto 38%;padding: 50px 70px 70px 71px;">
+            <div class="panel">
+                <h2 style="text-align: center;">Lista de usuarios</h2>
+                <br>
+            </div>
+            <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for user in user_list %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+        </div>
+    </div>
+ </div>
+</body>
+{% endblock %}

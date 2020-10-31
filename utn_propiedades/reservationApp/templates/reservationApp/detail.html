@@ -1,0 +1,89 @@
+{% extends "./basictemplate.html" %}
+{% block title %}Detail{% endblock %}
+{% block content %}
+<br>
+
+  <div class="container mb-3">
+
+    <div class="row" >
+
+      <div class="col-lg-9">
+        <div class="card mt-4" style="width: 100%;float: left;margin: 2px;">
+            {% if owner_ship.image %}
+                <img class="card-img-top img-fluid" src="{{ owner_ship.image.url }}" alt="">
+            {% endif %}
+          <div class="card-body">
+            <h3 class="card-title">{{ owner_ship.name }}</h3>
+            <h4>${{ owner_ship.price }}</h4>
+            <p class="card-text">{{ owner_ship.description }}</p>
+            <p class="card-text">Capacidad: {{ owner_ship.capacity }}</p>
+            <p class="card-text">Propietario: {{ owner_ship.owner.username }}</p>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            4.0 stars
+          </div>
+        </div>
+
+          </div>
+     <div class="col-lg-3" style="float: right;">
+        <div class="list-group border p-3" style="border: black;margin: 10px; margin-top: 25px; border-radius: 2px;">
+            <h3 class="card-title text-center" style="font-family: 'Quicksand', sans-serif; color: black;"><strong>Reservar:</strong></h3>
+        {% if dates %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <ul>
+                        {% for date in dates %}
+                            <label><input  class="mr-2" type="checkbox" name="dates" value="{{date}}">{{ date.date }}</label>
+                        {% endfor %}
+                    </ul>
+                    <p class="text-center">Huespedes</p><select class="form-control" name="" id="cap">
+
+                        {% for value in capacity %}
+                        <option value="{{ value }}">{{ value }}</option>
+                        {% endfor %}
+
+                    </select><br>
+                    <div><input name="name" placeholder="Nombre y Apellido"></div>
+                <div><input name="email" placeholder="Email"></div>
+                <div><input name="phone" placeholder="Teléfono"></div>
+                <div style="text-align: left">
+                </div>
+
+                <div style="text-align: left">
+                </div>
+
+
+                </div>
+
+                <script type="text/javascript">
+                    function atleast_onecheckbox(e) {
+                      if ($("input[type=checkbox]:checked").length === 0) {
+                          e.preventDefault();
+                          alert('Debe seleccionar al menos una fecha.');
+                          return false;
+                      }
+                    }
+                </script>
+                <div class="text-center">
+                    <button id="reserved" type="submit" class="btn btn-dark">Reservar!</button>
+                </div>
+            </form>
+        {% else %}
+            <p class="text-center">No hay fechas disponibles</p>
+        {% endif %}
+
+        </div>
+      </div>
+        </div>
+      <script type="text/javascript">
+          $("#reserved").click(function() {
+             if ($('input[type="checkbox"]:checked').length == 0) {
+                event.preventDefault();
+                alert("Seleccione por lo menos una fecha por favor.");
+            }
+        });
+      </script>
+      </div>
+    </div>
+  </div>
+{% endblock %}

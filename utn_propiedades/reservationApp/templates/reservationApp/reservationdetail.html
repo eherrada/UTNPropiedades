@@ -1,0 +1,42 @@
+
+{% extends "./basictemplate.html" %}
+{% block title %}Reservacion detalle{% endblock %}
+{% block content %}
+<br>
+<div class="container mb-4">
+    <div class="bg-white">
+        <p class="h2 text-center pt-4">Detalles de reserva</p>
+        <!--//if reserva == true-->
+        <ul class="list-group p-3">
+            <li class="list-group-item">
+                <p><strong>Usuario:</strong> {{ reservation.renter_name }}</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>Email:</strong> {{ reservation.renter_email }}</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>Teléfono:</strong> {{ reservation.renter_phone }}</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>Propiedad:</strong> {{ reservation.owner_ship.name }}</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>Código de reserva: </strong>{{ reservation.code }}</p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>Monto: ${{ reservation.total }}</strong></p>
+            </li>
+            <li class="list-group-item">
+                <p><strong>Fechas: </strong></p>
+                <ul class="list-group">
+                    {% for date in dates %}
+                    <li class="list-group-item">
+                        <p><strong>Día: </strong>{{ date.date }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

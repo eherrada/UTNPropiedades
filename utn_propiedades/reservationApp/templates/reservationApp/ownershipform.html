@@ -1,0 +1,54 @@
+
+{% extends "./basictemplate.html" %}
+{% block title %}Alta Propiedad{% endblock %}
+{% block content %}
+<body id="login-form" style="background-image: url(https://abysmgaming.com/wp-content/uploads/2018/05/background-product.jpg); background-repeat:no-repeat; background-position:center; background-size:cover; padding: 50px 70px 70px 71px;">
+<div class="container">
+    <div class="login-form" style="">
+        <div class="main-div" style=" background: #ffffff ;border-radius: 2px;margin: 10px auto 30px;max-width: 38%;padding: 50px 70px 70px 71px;">
+            <div class="panel">
+                <h2>Agregar Propiedad</h2>
+                <p>Porfavor, ingrese la informacion solicitada.</p>
+            </div>
+
+            <form id="" method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre de Propiedad" required>
+                </div>
+                <div class="form-group">
+                    <textarea type="text" class="form-control" name="desc" id="desc" placeholder="Descripcion" required></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="capacity" id="capacity" placeholder="Capacidad" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="price" id="price" placeholder="Precio" required>
+                </div>
+
+                   <div class="form-group">
+                    <select  class="form-control" name="city" id="">
+                        {% for city in ciudades_list   %}
+                        <option value="{{ city.name }}">{{ city.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <input type="file" class="form-control" name="file" id="file">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="background: #383534;border-color: #383534;color: #ffffff;font-size: 14px;width: 100%;height: 50px;line-height: 50px;padding: 0;" >Enviar</button>
+
+            </form>
+            {% if msg != '' %}
+                <div class="alert alert-success">Cargado Correctamente!</div>
+            {% endif %}
+            <br>
+            <a class="btn btn-primary" style="background: #383534;border-color: #383534;color: #ffffff;font-size: 14px;width: 100%;height: 50px;line-height: 50px;padding: 0;" href="/">Home</a>
+        </div>
+    </div>
+ </div>
+</body>
+{% endblock %}
