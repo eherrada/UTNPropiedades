@@ -1,6 +1,12 @@
 # UTNPropiedades
 TP Final Django Metodología 3 UTN 2020
 
+Integrantes:
+
+Herrada, Emilio
+Mackiewickz, Matías
+Valverde, Gustavo
+
 Para la utilización del sistema, existen 3 tipos de usuario.
 
 *Invitado (sin login) -> Solo puede hacer reservas
